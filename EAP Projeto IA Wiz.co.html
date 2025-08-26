@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Planejamento Estratégico de IA da Wiz.co (tema claro)</title>
+  <!-- JSON de conteúdo dos itens do Nível 1 e subníveis (edite à vontade) -->
+  <script id="wbs-json" type="application/json">
+  {
+    "pre_venda": {
+      "title": "Pré-Venda",
+      "desc": "Captação e qualificação de demanda nos canais bancários e parceiros (ex.: BRB, Banco Bmg, Paraná Banco, Inter), com checagem de elegibilidade e margem.",
+      "ai": "Scoring de leads; pré-qualificação automática; verificação de margem via integrações; copilotos de objeção e priorização multicanais.",
+      "obj": "Elevar taxa de conversão no topo do funil e reduzir CAC nos canais bancários e parceiros.",
+      "sub": {
+        "nic": {
+  "title": "NIC",
+  "desc": "Processo de pré-análise e qualificação para grandes operações de consórcio: coleta de documentos do cliente, validação/avaliação automática (conformidade, legibilidade e vigência) e cobrança ativa de pendências. A IA orquestra a esteira, aplica critérios de elegibilidade e gera um parecer inicial explicável.",
+  "deliverables": [
+    "Esteira de Pré-Venda configurável (fases, SLA, roteamento e regras por produto/convênio)",
+    "Regras de elegibilidade parametrizáveis (perfil, renda, score, restrições) com simulação",
+    "Checklist documental parametrizável com pré-validação automática (OCR, extração, validade e conformidade)",
+    "Assistente de pré-análise com explicabilidade (motivos da decisão e pendências)",
+    "Fluxos de cobrança de pendências omnicanal (WhatsApp/SMS/e-mail/portal) com prazos e reenvio automático",
+    "Trilha de auditoria e dashboards (lead→pré-aprovado, TMA, % pendências resolvidas)"
+  ]
+},
+"consulta_margem": {
+  "title": "Consulta de margem",
+  "desc": "Agente de IA que consulta, em tempo real e em paralelo, a margem consignável do cliente em múltiplos convênios, inclusive via WhatsApp, consolidando os resultados em formato claro e acionável.",
+  "deliverables": [
+    "Catálogo parametrizável de convênios (credenciais, endpoints, regras e limites)",
+    "Orquestrador de consultas paralelas com timeouts, retries e fallback",
+    "Conectores/integradores para provedores de margem/folha",
+    "Agente conversacional no WhatsApp para coleta mínima de dados e retorno da consulta",
+    "Normalização e apresentação user-friendly (cards/status, observações e próximos passos)",
+    "Cache com políticas de expiração, logs e trilhas de auditoria por convênio",
+    "Alertas de inconsistência e métricas (tempo de resposta, taxa de sucesso, consultas por convênio)"
+  ]
+}
+      }
+    },
+    "oferta_produto": {
+      "title": "Oferta Produto",
+      "desc": "Desenho e gestão de propostas de seguros, consórcios e crédito no ecossistema Wiz Co; foco em venda, renovação e cross-sell.",
+      "ai": "Recomendação de next‑best‑offer; geração automática de propostas; cálculo de prêmios; argumentários personalizados; orquestração de follow‑ups.",
+      "obj": "Aumentar receita por cliente e ticket médio com multiproduto, preservando compliance e margem.",
+      "sub": {
+        "venda": {
+		  "title": "Venda",
+		  "desc": "Jornadas de venda fim a fim, conduzidas por agente de IA — da primeira abordagem ao pagamento e emissão. Totalmente integrado ao CRM para ler dados (cliente, histórico, oportunidades) e escrever atualizações (fase, cotação, proposta, pagamento), cobrindo todos os ramos em que a Wiz co atua (residencial, automóvel, viagem, saúde, vida, consórcio e crédito).",
+		  "deliverables": [
+			"Orquestração de jornadas omnicanal com handoff humano",
+			"Integração bidirecional com CRM (leitura/escrita de oportunidades, cotações, propostas e tarefas)",
+			"Catálogo de produtos multi-ramo (residencial, auto, saúde, vida, consórcio e crédito) com regras por linha",
+			"Motor de cotação e proposta",
+			"Pagamento integrado com a Wiz Pro",
+			"KPIs operacionais e de receita (conversão por canal/produto, TMA, valor médio, motivos de perda)"
+		  ]
+		},
+		"renovacao": {
+		  "title": "Renovação",
+		  "desc": "Renovação autônoma de apólices/contratos com agente de IA: identifica elegibilidade, calcula proposta de renovação, notifica o cliente, negocia condições quando aplicável e conclui pagamento/emissão. Integra com CRM para atualizar estágio e tarefas.",
+		  "deliverables": [
+			"Motor de renovação com regras por produto/seguradora",
+			"Detecção de risco/churn e priorização de carteiras (modelos de ML)",
+			"Geração automática de propostas de renovação com comparação de alternativas",
+			"Fluxos de comunicação e coleta de aceite (WhatsApp/e-mail/portal)",
+			"Pagamento e emissão automáticos com reconciliação, notas e comprovantes",
+			"Atualização de CRM e reabertura de oportunidade se houver objeção",
+			"Dashboards e SLAs de renovação (taxa de renovação, tempo de ciclo, churn evitado, NPS)"
+		  ]
+		},
+		"cross_sell": {
+		  "title": "Cross Sell",
+		  "desc": "Oferta de produtos complementares para a base ativa, usando um motor de recomendação (Next Best Offer/Action) e gatilhos em momentos-chave (renovação, atendimento, eventos de vida). Execução por agente de IA com registro no CRM.",
+		  "deliverables": [
+			"Recomendador de ofertas por perfil e contexto (vida, saúde, auto, residencial, consórcio, crédito)",
+			"Segmentação e regras de elegibilidade/afinidade por perfil, ticket e risco",
+			"Campanhas always-on e triggers transacionais (ex.: pós-sinistro e fim de vigência)",
+			"Execução omnicanal",
+			"Integração com CRM",
+			"KPIs de cross-sell (attach rate, receita incremental, LTV, custo por conversão)"
+		  ]
+		}
+      }
+    },
+    "pos_venda": {
+      "title": "Pós-Venda",
+      "desc": "Atendimento e operações após a contratação: cotações adicionais, endossos/alterações e gestão de sinistros.",
+      "ai": "Roteamento inteligente; extração de dados de documentos; detecção de fraude; copilotos para triagem e análise de sinistro; automações de status.",
+      "obj": "Reduzir TAT e custo de atendimento, elevando NPS e retenção.",
+      "sub": {
+"cotacao": {
+  "title": "Cobrança",
+  "desc": "Gestão e execução da cobrança de seguros: identificação automática de pendências, emissão/reenvio de boletos e links de pagamento (Pix, cartão, boleto), comunicação omnicanal e conciliação para baixa automática — tudo integrado ao CRM e ao billing.",
+  "deliverables": [
+    "Régua de cobrança parametrizável (janelas, escalonamentos, canais, mensagens e horários)",
+    "Detecção de pendências no CRM/billing (parcelas em aberto, status de apólice, aging)",
+    "Emissão de boletos/2ª via e links de pagamento com QR Code (Pix/cartão/boleto)",
+    "Envio e reenvio omnicanal (WhatsApp, e-mail, SMS) com confirmação de entrega",
+    "Integração com PSP/bancos e retorno CNAB para conciliação automática",
+    "Baixa automática e atualização de status em CRM e apólice (trilhas de auditoria)",
+    "Dashboards e relatórios de inadimplência e recuperação (aging, % pago, DSO, cohort)",
+    "Tratamento de exceções e negociações (acordos, parcelamentos, reagendamentos)",
+    "Alertas operacionais e monitoramento de SLA da régua de cobrança"
+  ]
+},
+"endosso": {
+  "title": "Endosso",
+  "desc": "Coleta orientada de informações, nova cotação considerando o evento de endosso e transmissão à seguradora, espelhando o fluxo de renovação.",
+  "deliverables": [
+    "Formulários guiados e validações por tipo de endosso (alteração de dados/cobertura/prêmio)",
+    "Regras e simulações de cotação com impacto em prêmio/coberturas",
+    "Geração de proposta de endosso e coleta de aceite/assinatura quando aplicável",
+    "Transmissão do endosso à seguradora e recepção de protocolos",
+    "Atualização automática no CRM (estágio, atividades, documentos anexos)",
+    "Logs, rastreabilidade e SLAs por tipo de endosso"
+  ]
+},
+"sinistro": {
+  "title": "Sinistro",
+  "desc": "Registro mínimo (FNOL) no CRM, coletando todas as informações obrigatórias para abertura do sinistro junto à seguradora.",
+  "deliverables": [
+    "Formulário FNOL com validações obrigatórias (apólice, evento, data, local, envolvidos)",
+    "Checklist documental e upload com OCR/extração e verificação de conformidade",
+    "Geração de protocolo interno e encaminhamento para abertura na seguradora (quando integrado)",
+    "Criação de tarefa/caso no CRM com prazos e responsáveis",
+    "Comunicações ao cliente (confirmação de abertura, pendências, próximos passos)",
+    "Acompanhamento de status e histórico (quando disponível via integração)"
+  ]
+}
+      }
+    },
+    "suporte_comercial": {
+      "title": "Suporte Comercial",
+      "desc": "Apoio à força de vendas e rede de parceiros (credenciamento, treinamento e assistência comercial).",
+      "ai": "Assistente comercial com base de conhecimento (RAG); respostas rápidas e consistentes; validação de compliance de documentos; onboarding guiado.",
+      "obj": "Acelerar ramp‑up dos parceiros, padronizar atendimento e aumentar produtividade comercial.",
+      "sub": {
+        "credenciamento": {
+  "title": "Credenciamento",
+  "desc": "Agente que conduz o credenciamento de parceiros para venda de produtos no Banco do Brasil e em outras administradoras de consórcio/crédito. Orquestra a coleta de documentos, faz pré-análise (legibilidade, validade, consistência), validações cadastrais/contratuais (KYP/KYC, quando aplicável), orienta o parceiro em cada etapa e acompanha até a aprovação, tudo integrado ao CRM.",
+  "deliverables": [
+    "Checklists parametrizáveis por produto/administradora (documentos, formulários, critérios de elegibilidade)",
+    "Upload orientado com pré-validação automática (OCR/extração de campos, verificação de legibilidade e validade)",
+    "Validações cadastrais e consultas externas quando aplicável (CNPJ, certidões, listas restritivas)",
+    "Régua de pendências com notificações e reenvio automático de instruções (WhatsApp)",
+    "Integração bidirecional com CRM (pipeline de credenciamento, tarefas, SLAs, anexos e histórico)",
+    "Portal/visão de status para parceiro e time comercial (etapa, pendências, prazos)",
+    "Trilha de auditoria completa e relatórios (tempo de ciclo, taxa de aprovação, principais pendências)"
+  ]
+},
+"assistente_comercial": {
+  "title": "Assistente Comercial (Base de Conhecimento)",
+  "desc": "Assistente que atende a rede própria e parceiros com dúvidas sobre produtos, regras de negócio e condições gerais. Usa uma base de conhecimento estruturada e versionada, com buscas RAG e citações de fonte, além de integrar ao CRM para recuperar contexto e registrar interações.",
+  "deliverables": [
+    "Base de conhecimento estruturada e versionada (condições gerais, coberturas, elegibilidade, processos)",
+    "RAG com políticas de segurança e citações das fontes oficiais (respostas ancoradas em documentos)",
+    "Playbooks e fluxos de decisão parametrizáveis por produto/canal",
+    "Integração com CRM para contexto (cliente/oportunidade) e registro automático de atendimentos",
+    "Escalonamento assistido para humano com histórico do caso e sugestões de resposta",
+    "Mecanismo de feedback/curadoria (sinalização de respostas úteis/incorretas) e atualização contínua",
+    "Canais de atendimento: WhatsApp, web/intranet e e-mail, com SSO e controle de acesso por perfil",
+    "Observabilidade e dashboards (tópicos mais buscados, satisfação, tempo de resposta, taxa de resolução)"
+  ]
+}
+      }
+    },
+    "cross": {
+      "title": "CROSS",
+      "desc": "Capacidades transversais: governança, segurança, monitoramento (feedback/observabilidade), integrações, automação (\"RPA\"), oferta (agendamentos) e orquestração multiagente/RAG.",
+      "ai": "Stack comum de IA (guardrails, observabilidade e métricas); gateways de integração; catálogo de automações; orquestração multiagente.",
+      "obj": "Garantir escala, confiabilidade e conformidade dos casos de uso de IA em todo o grupo.",
+			  "sub": {
+		  "governanca": {
+			"title": "Governança",
+			"desc": "Implementação de um método de governança para modelos e agentes de IA, cobrindo ciclo de vida, riscos, aprovações e auditoria, com papéis e rituais claros.",
+			"deliverables": [
+			  "Framework de AIGov (políticas, papéis RACI, ritos e gates por fase)",
+			  "Registro de riscos e matriz de impacto (inclui vieses, segurança, compliance/LGPD)",
+			  "Processo de aprovação/mudança (modelos e agentes) com trilha de auditoria",
+			  "Model/Agent Cards e Data Sheets (finalidade, limites, datasets, métricas, versões)",
+			  "Gestão de datasets: catalogação, linhagem, consentimentos e retenção",
+			  "Registro de modelos/agentes (versionamento, rollback, depreciação)",
+			  "Relatórios executivos periódicos (conformidade, incidentes, roadmap de mitigação)"
+			]
+		  },
+		  "seguranca": {
+			"title": "Segurança",
+			"desc": "Controles de segurança e privacidade aplicados à IA, alinhados à família ISO/IEC 27000 e normas de gestão/risco de IA (p.ex., ISO/IEC 42001 e 23894).",
+			"deliverables": [
+			  "Classificação de dados e proteção de PII (mascaração, minimização e retenção)",
+			  "Gestão de segredos/criptografia (em repouso e em trânsito) e rotação de chaves",
+			  "IAM e princípio do menor privilégio para agentes, ferramentas e integrações",
+			  "Guardrails contra prompt injection, exfiltração e jailbreaks; red teaming periódico",
+			  "Gestão de vulnerabilidades e dependências; segurança de supply chain de modelos",
+			  "Monitoramento centralizado (SIEM) e playbooks de resposta a incidentes",
+			  "Avaliação de risco de terceiros (LLMs, PSPs, provedores de dados) e contratos"
+			]
+		  },
+		  "monitoramento": {
+			"title": "Monitoramento (Feedback e Observabilidade)",
+			"desc": "Observabilidade robusta para agentes e modelos, com métricas de qualidade/segurança, custos, latência e ciclos de melhoria contínua.",
+			"deliverables": [
+			  "Métricas e SLOs: precisão, cobertura, alucinação, segurança, latência e custo",
+			  "Avaliação contínua (testes canário, regressão e conjuntos de avaliação)",
+			  "Captura de feedback humano e rotulagem assistida para reforço/afinamento",
+			  "Detecção de drift de dados/modelo e alertas proativos",
+			  "Tracing de sessões e ferramentas; correlação com logs de integração",
+			  "Dashboards operacionais/exec e relatórios automatizados",
+			  "Processo de melhoria contínua (backlog, experimentos e rollout controlado)"
+			]
+		  },
+		  "integracao": {
+			"title": "Integração",
+			"desc": "Motor de integração de IA agnóstico a LLM e a canal: qualquer sistema e qualquer LLM podem ser plugados, com roteamento inteligente e contratos estáveis.",
+			"deliverables": [
+			  "Abstração de LLM (adapter) e roteador de modelo por custo/latência/qualidade",
+			  "Adapters de canal (WhatsApp, voz, web, e-mail, apps) e webhooks",
+			  "APIs REST/gRPC e eventos (fila/broker) com idempotência, retries e circuit breaker",
+			  "Conectores com CRM, billing, seguradoras, provedores de margem e WizPro",
+			  "Versionamento de contratos (schema registry) e testes de contrato",
+			  "Observabilidade de integrações (telemetria, logs, métrricas e tracing)",
+			  "Segurança: autenticação, autorização e auditoria por integração"
+			]
+		  },
+		  "automacao": {
+			"title": "Automação (\"RPA\")",
+			"desc": "Automação resiliente e adaptativa a mudanças de portais, combinando visão computacional, seletores semânticos e LLM para autoajuste.",
+			"deliverables": [
+			  "Executores atendidos e não-atendidos (headless) com orquestração e SLAs",
+			  "Seletores semânticos e detecção visual para auto-healing de fluxos",
+			  "Aprendizado de mudanças de layout (watchers) e sugestões de correção",
+			  "Biblioteca de tarefas reutilizáveis e versionadas",
+			  "Teste automatizado de rotas críticas e simulações",
+			  "Fallback/hand-off humano e reprocessamento seguro",
+			  "Monitoramento de jobs, filas e alarmes de erro/timeout"
+			]
+		  },
+		  "oferta": {
+			"title": "Oferta (Agendamento de contato e ação)",
+			"desc": "A IA acompanha conversas com clientes e, de forma autônoma, agenda contatos e ações futuras, respeitando políticas de comunicação e consentimentos.",
+			"deliverables": [
+			  "Listener de conversas para identificar gatilhos de follow-up",
+			  "Motor de agendamento com regras de prioridade, janelas e recorrência",
+			  "Integração com CRM (tarefas/oportunidades) e calendários",
+			  "Mensagens de confirmação e lembretes omnicanal",
+			  "Políticas de consentimento/opt-in e controle de frequência de contato",
+			  "Dashboards de compromissos e aderência a SLAs"
+			]
+		  },
+		  "multi_agente": {
+			"title": "Multi-agente",
+			"desc": "Capacidade de operar múltiplos agentes especializados por tarefa, com troca coordenada em um mesmo canal e orquestração segura.",
+			"deliverables": [
+			  "Orquestrador/roteador de agentes por competência e contexto",
+			  "Memória de sessão compartilhada e identidade persistente do cliente",
+			  "Handoff entre agentes e para humano com histórico completo",
+			  "Guardrails e limites por agente (escopo, ferramentas, custos)",
+			  "Concorrência e isolamento de sessões; cota e rate limiting",
+			  "Testes e simulações de colaboração entre agentes"
+			]
+		  },
+		  "rag": {
+			"title": "RAG",
+			"desc": "Busca aumentada por recuperação como base de conhecimento dos agentes, integrada às bibliotecas do WizPro.",
+			"deliverables": [
+			  "Pipelines de ingestão/indexação das bibliotecas WizPro (com permissões)",
+			  "Indexação híbrida (vetorial + lexical) com chunking e metadados",
+			  "Citações de fonte e controles de confidencialidade",
+			  "Conjuntos de avaliação e métricas (precisão/recall/groundedness)",
+			  "Atualizações e versionamento de bases; políticas de expiração",
+			  "Cache e camadas de aceleração para consultas frequentes"
+			]
+		  }
+		}
+    },
+    "wizpro": {
+      "title": "WizPro",
+      "desc": "Plataforma operacional da Wiz Co para gestão de canais e operações (base para digitalização e escala).",
+      "ai": "Copilotos no WizPro; automação de tarefas; sumarização de tickets; insights operacionais e sugestões proativas; analytics embarcado.",
+      "obj": "Digitalizar a operação e capturar ganhos de eficiência, habilitando crescimento com margem.",
+      "sub": {
+        "helper_wizpro": {
+          "title": "Helper WizPro",
+          "desc": "Assistente in‑app com atalhos e sugestões contextuais.",
+          "deliverables": [
+            "Comandos rápidos e macros",
+            "Sugestões por contexto",
+            "Tutoriais e onboarding guiado"
+          ]
+        },
+        "suporte": {
+          "title": "Suporte",
+          "desc": "Gestão de tickets e base de ajuda integrada ao WizPro.",
+          "deliverables": [
+            "Central de ajuda e artigos",
+            "SLA e priorização de tickets",
+            "Macros e respostas padrão"
+          ]
+        }
+      }
+    }
+  }
+  </script>
+  <script>
+    // Disponibiliza o JSON ainda no <head> para uso imediato.
+    (function(){
+      try {
+        window.WBS_DATA = JSON.parse(document.getElementById('wbs-json').textContent);
+      } catch(e) { window.WBS_DATA = {}; }
+    })();
+  </script>
+  <style>
+    :root{
+      /* Paleta clara (Light) com destaque alaranjado */
+      --bg:#ffffff;           /* fundo branco */
+      --card:#ffffff;         /* cartão branco */
+      --text:#1f2937;         /* cinza-800 */
+      --muted:#6b7280;        /* cinza-500 */
+      --accent:#f97316;       /* laranja (tailwind orange-500) */
+      --line:#e5e7eb;         /* cinza-200 */
+      --box:#ffffff;          /* caixas */
+      --box-grad-top:#ffffff; /* gradiente topo claro */
+      --box-grad-bot:#fafafa; /* gradiente base claro */
+      --panel:#ffffff;        /* painel lateral */
+      --label:#b45309;        /* laranja-700 para rótulos */
+      --shadow:0 8px 20px rgba(17,24,39,.08); /* sombra suave */
+      --shadow-strong:0 12px 30px rgba(17,24,39,.10);
+      --focus: 0 0 0 3px rgba(249,115,22,.25); /* anel de foco acessível */
+      --hover:#fff7ed;        /* laranja muito claro para hover */
+      --callout-bg:#fff7ed;   /* fundo callout */
+      --callout-br:#fed7aa;   /* borda callout */
+    }
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg); color:var(--text)
+    }
+    .wrap{max-width:1320px; margin:24px auto; padding:0 16px}
+    /* Cabeçalho alinhado à borda esquerda do card (mesmo offset de 60px) e largura = 80% da moldura inferior (90vw) */
+    .header{width:72vw; position:relative; left:calc(50% - 50vw + 60px); margin-bottom:12px}
+    h1{margin:0 0 6px; font-size:clamp(22px,3vw,32px)}
+    .subtitle{color:var(--muted); font-size:14px; margin-bottom:16px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 18px; box-shadow:var(--shadow-strong); position:relative; width:90vw; left:calc(50% - 50vw + 60px);} /* moldura somente */
+
+    /* --- LAYOUT: diagrama à esquerda + painel à direita --- */
+    .layout{ display:flex; gap:20px; align-items:flex-start }
+    .diagram{ flex:1 1 auto; min-width:0 }
+    .sidebar{ flex:0 0 520px }
+
+    /* Root box */
+    .root{
+      display:inline-block; background:linear-gradient(180deg,var(--box-grad-top),var(--box-grad-bot));
+      border:1px solid var(--line); border-radius:12px; padding:10px 14px; font-weight:700; letter-spacing:.2px;
+      box-shadow:var(--shadow); margin-bottom:14px
+    }
+
+    /* Tree base */
+    .tree{ counter-reset: item; list-style:none; margin:0; padding-left:20px; position:relative }
+    .tree, .tree ol{ border-left:2px solid var(--line); }
+    .tree ol{ counter-reset:item; list-style:none; margin:0; padding-left:20px }
+    .tree > li:first-child{ margin-top:6px }
+    .tree li{ counter-increment:item; position:relative; margin:0; padding:0 0 10px 0 }
+
+    /* connectors */
+    .tree li::before{ content:""; position:absolute; left:-7px; top:10px; width:10px; height:10px; background:var(--bg); border:2px solid var(--line); border-radius:50% }
+    .tree li .row::before{ content:""; position:absolute; left:-20px; top:18px; width:20px; height:2px; background:var(--line) }
+
+    .row{ position:relative; display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px; }
+    .num{ color:var(--accent); font-variant-numeric: tabular-nums; font-weight:700; min-width:40px }
+    .box{ background:linear-gradient(180deg,var(--box-grad-top),var(--box-grad-bot)); border:1px solid var(--line); border-radius:10px; padding:8px 10px; box-shadow:var(--shadow); transition: background .15s ease, border-color .15s ease, box-shadow .15s ease }
+    .box.l1:hover, .box.l2:hover{ background:var(--hover); border-color:#fecaa5; box-shadow:0 10px 24px rgba(17,24,39,.12) }
+    /* Sombreamento laranja para destaques */
+    .box.hl{ background:linear-gradient(180deg,#fff7ed,#ffedd5); border-color:#fdba74; box-shadow:0 10px 26px rgba(249,115,22,.28), 0 0 0 2px rgba(249,115,22,.35) }
+.hint{ color:var(--muted); font-size:12px; margin-left:6px }
+
+    /* last child: cut vertical line after the dot */
+    .tree li:last-child{ padding-bottom:0 }
+    .tree li:last-child::after{ content:""; position:absolute; left:-2px; top:20px; bottom:0; width:2px; background:linear-gradient(var(--line),transparent) }
+
+    /* Nível 1 lado a lado */
+    .tree.roots{ display:flex; gap:26px; align-items:flex-start; border-left:0; padding-left:0; flex-wrap:wrap }
+    .tree.roots > li{ min-width: 300px; }
+    .tree.roots > li::before{ display:none }
+    .tree.roots > li > .row::before{ display:none }
+    .tree.roots > li > ol{ border-left:2px solid var(--line); padding-left:20px; margin-top:8px }
+
+    /* badge */
+    .badge{ display:inline-block; padding:4px 8px; border:1px solid var(--line); border-radius:999px; font-size:11px; color:var(--muted); margin-left:6px }
+
+    /* Painel de descrição (dock) — lateral direita, claro */
+    .dock{ display:none; position:sticky; top:12px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:22px 24px; box-shadow:var(--shadow) }
+    .dock .t-title{ font-weight:800; letter-spacing:.2px; color:var(--text); font-size:24px; margin:0 0 4px }
+    .dock .t-label{ font-size:13.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--label); margin-top:14px; margin-bottom:6px }
+    .dock .t-sec{ color:#111827; font-size:17px; line-height:1.6 }
+    .dock .t-sec p{ margin:0 0 10px }
+    .dock .t-sec ul{ margin:0; padding-left:18px }
+    .dock .t-sec li{ margin:6px 0; padding-left:2px }
+    .dock .callout{ background:var(--callout-bg); border:1px solid var(--callout-br); border-radius:12px; padding:12px 14px; box-shadow:0 4px 10px rgba(17,24,39,.06) }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="header">
+      <h1>Planejamento Estratégico de IA da Wiz.co</h1>
+      <div class="subtitle">Visão de futuro: construir um ecossistema de IA que potencialize crescimento, eficiência e experiência do cliente, conectando dados e processos dos canais Wiz para decisões em tempo real. O plano organiza iniciativas por macrofluxos (Pré‑Venda, Oferta, Pós‑Venda e Suporte Comercial), sustentadas por capacidades CROSS (governança, segurança, observabilidade, integrações e automação) e pela plataforma WizPro — com roadmap orientado a valor, metas trimestrais e guardrails de compliance.</div>
+    </header>
+
+    <section class="card">
+      <div class="layout">
+        <!-- Coluna esquerda: diagrama -->
+        <div class="diagram">
+          <div class="root">Projeto IA <span class="badge">EAP / WBS</span></div>
+
+          <ol class="tree roots">
+            <!-- 1. Pré-Venda -->
+            <li>
+              <div class="row"><span class="num">1</span><div class="box l1" data-key="pre_venda">Pré-Venda</div></div>
+              <ol class="tree">
+                <li><div class="row"><span class="num">1.1</span><div class="box l2" data-key="pre_venda.nic">NIC</div></div></li>
+                <li><div class="row"><span class="num">1.2</span><div class="box l2" data-key="pre_venda.consulta_margem">Consulta de margem</div></div></li>
+              </ol>
+            </li>
+
+            <!-- 2. Oferta Produto -->
+            <li>
+              <div class="row"><span class="num">2</span><div class="box l1 hl" data-key="oferta_produto">Oferta Produto</div></div>
+              <ol class="tree">
+                <li><div class="row"><span class="num">2.1</span><div class="box l2 hl" data-key="oferta_produto.venda">Venda</div></div></li>
+                <li><div class="row"><span class="num">2.2</span><div class="box l2" data-key="oferta_produto.renovacao">Renovação</div></div></li>
+                <li><div class="row"><span class="num">2.3</span><div class="box l2" data-key="oferta_produto.cross_sell">Cross Sell</div></div></li>
+              </ol>
+            </li>
+
+            <!-- 3. Pós-Venda -->
+            <li>
+              <div class="row"><span class="num">3</span><div class="box l1" data-key="pos_venda">Pós-Venda</div></div>
+              <ol class="tree">
+                <li><div class="row"><span class="num">3.1</span><div class="box l2" data-key="pos_venda.cotacao">Cobrança</div></div></li>
+                <li><div class="row"><span class="num">3.2</span><div class="box l2" data-key="pos_venda.endosso">Endosso</div></div></li>
+                <li><div class="row"><span class="num">3.3</span><div class="box l2" data-key="pos_venda.sinistro">Sinistro</div></div></li>
+              </ol>
+            </li>
+
+            <!-- 4. Suporte Comercial -->
+            <li>
+              <div class="row"><span class="num">4</span><div class="box l1 hl" data-key="suporte_comercial">Suporte Comercial</div></div>
+              <ol class="tree">
+                <li><div class="row"><span class="num">4.1</span><div class="box l2" data-key="suporte_comercial.credenciamento">Credenciamento</div></div></li>
+                <li><div class="row"><span class="num">4.2</span><div class="box l2 hl" data-key="suporte_comercial.assistente_comercial">Assistente Comercial <span class="hint">(Base de Conhecimento)</span></div></div></li>
+              </ol>
+            </li>
+
+            <!-- 5. CROSS -->
+            <li>
+              <div class="row"><span class="num">5</span><div class="box l1 hl" data-key="cross">CROSS</div></div>
+              <ol class="tree">
+                <li><div class="row"><span class="num">5.1</span><div class="box l2" data-key="cross.governanca">Governança</div></div></li>
+                <li><div class="row"><span class="num">5.2</span><div class="box l2" data-key="cross.seguranca">Segurança</div></div></li>
+                <li><div class="row"><span class="num">5.3</span><div class="box l2 hl" data-key="cross.monitoramento">Monitoramento <span class="hint">(Feedback e Observabilidade)</span></div></div></li>
+                <li><div class="row"><span class="num">5.4</span><div class="box l2 hl" data-key="cross.integracao">Integração</div></div></li>
+                <li><div class="row"><span class="num">5.5</span><div class="box l2" data-key="cross.automacao">Automação <span class="hint">(“RPA”)</span></div></div></li>
+                <li><div class="row"><span class="num">5.6</span><div class="box l2 hl" data-key="cross.oferta">Oferta <span class="hint">(Agendamento de contato e ação)</span></div></div></li>
+                <li><div class="row"><span class="num">5.7</span><div class="box l2 hl" data-key="cross.multi_agente">Multi-agente</div></div></li>
+                <li><div class="row"><span class="num">5.8</span><div class="box l2 hl" data-key="cross.rag">RAG</div></div></li>
+              </ol>
+            </li>
+
+            <!-- 6. WizPro -->
+            <li>
+              <div class="row"><span class="num">6</span><div class="box l1" data-key="wizpro">WizPro</div></div>
+              <ol class="tree">
+                <li><div class="row"><span class="num">6.1</span><div class="box l2" data-key="wizpro.helper_wizpro">Helper WizPro</div></div></li>
+                <li><div class="row"><span class="num">6.2</span><div class="box l2" data-key="wizpro.suporte">Suporte</div></div></li>
+              </ol>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Coluna direita: painel -->
+        <aside class="sidebar">
+          <div id="dock" class="dock" aria-live="polite">
+            <div class="t-title"></div>
+            <div class="t-label lbl-desc">Descrição</div>
+            <div class="t-desc t-sec"></div>
+            <div class="t-label lbl-ai">Como a IA apoia a WIZ</div>
+            <div class="t-ai t-sec"></div>
+            <div class="t-label lbl-obj">Objetivo estratégico</div>
+            <div class="t-obj t-sec"></div>
+            <div class="t-label lbl-deliv">Entregáveis</div>
+            <div class="t-deliv t-sec"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const dock = document.getElementById('dock');
+    const titleEl = dock.querySelector('.t-title');
+    const descEl = dock.querySelector('.t-desc');
+    const aiEl = dock.querySelector('.t-ai');
+    const objEl = dock.querySelector('.t-obj');
+    const delivEl = dock.querySelector('.t-deliv');
+
+    const lblDesc = dock.querySelector('.lbl-desc');
+    const lblAI = dock.querySelector('.lbl-ai');
+    const lblObj = dock.querySelector('.lbl-obj');
+    const lblDeliv = dock.querySelector('.lbl-deliv');
+
+    const esc = (s='') => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    const toList = (s='') => {
+      const items = s.split(';').map(t=>t.trim()).filter(Boolean);
+      if(items.length <= 1) return `<p>${esc(s)}</p>`;
+      return `<ul>` + items.map(it => `<li>${esc(it)}</li>`).join('') + `</ul>`;
+    };
+    const arrList = (arr=[]) => `<ul>` + (arr||[]).map(it => `<li>${esc(it)}</li>`).join('') + `</ul>`;
+
+    function resolveData(key){
+      const [rootKey, subKey] = String(key||'').split('.');
+      const root = (window.WBS_DATA || {})[rootKey] || {};
+      if(subKey && root.sub && root.sub[subKey]){
+        return { level:'sub', data: root.sub[subKey] };
+      }
+      return { level:'root', data: root };
+    }
+
+    function setDockByKey(key){
+      const { level, data } = resolveData(key);
+      const d = data || {};
+
+      titleEl.textContent = d.title || '';
+      descEl.innerHTML = d.desc ? `<p>${esc(d.desc)}</p>` : '';
+
+      if(level === 'root'){
+        // Mostrar seções de IA/Objetivo; ocultar entregáveis
+        aiEl.innerHTML = d.ai ? toList(d.ai) : '';
+        objEl.innerHTML = d.obj ? `<div class="callout">${esc(d.obj)}</div>` : '';
+        delivEl.innerHTML = '';
+        lblAI.style.display = aiEl.innerHTML ? 'block' : 'none';
+        lblObj.style.display = objEl.innerHTML ? 'block' : 'none';
+        lblDeliv.style.display = 'none';
+        delivEl.style.display = 'none';
+      } else {
+        // Subnível: mostrar Entregáveis; ocultar IA/Objetivo
+        aiEl.innerHTML = '';
+        objEl.innerHTML = '';
+        delivEl.innerHTML = (d.deliverables && d.deliverables.length) ? arrList(d.deliverables) : '';
+        lblAI.style.display = 'none';
+        lblObj.style.display = 'none';
+        lblDeliv.style.display = delivEl.innerHTML ? 'block' : 'none';
+        delivEl.style.display = delivEl.innerHTML ? 'block' : 'none';
+      }
+
+      // Descrição: oculta label se estiver vazia
+      lblDesc.style.display = descEl.innerHTML ? 'block' : 'none';
+
+      // Exibe/oculta painel
+      dock.style.display = d.title ? 'block' : 'none';
+    }
+
+    function clearDock(){
+      titleEl.textContent = '';
+      descEl.innerHTML = '';
+      aiEl.innerHTML = '';
+      objEl.innerHTML = '';
+      delivEl.innerHTML = '';
+      [lblDesc,lblAI,lblObj,lblDeliv].forEach(el=> el.style.display='none');
+      dock.style.display = 'none';
+    }
+
+    // Eventos nos itens com data-key (nível 1 e subnível)
+    document.querySelectorAll('.box[data-key]').forEach(el => {
+      const key = el.dataset.key;
+      el.addEventListener('mouseenter', ()=> setDockByKey(key));
+      el.addEventListener('mouseleave', clearDock);
+      // acessibilidade via teclado
+      el.setAttribute('tabindex','0');
+      el.addEventListener('focus', ()=> setDockByKey(key));
+      el.addEventListener('blur', clearDock);
+    });
+  </script>
+</body>
+</html>
